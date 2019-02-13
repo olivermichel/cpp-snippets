@@ -10,7 +10,7 @@ public:
 		std::cout << "Test()" << std::endl;
 	};
 
-	Test(int number)
+	explicit Test(int number)
 		: _number(number)
 	{
 		std::cout << "Test(" << number << ")" << std::endl;
@@ -22,7 +22,7 @@ public:
 		std::cout << "Test(const Test&) : " << _number << std::endl;
 	}
 
-	Test(Test&& move_from)
+	Test(Test&& move_from) noexcept
 		: _number(move_from._number)
 	{
 		std::cout << "Test(Test&&) : " << _number << std::endl;
@@ -35,7 +35,7 @@ public:
 		return *this;
 	}
 
-	Test& operator=(Test&& move_from)
+	Test& operator=(Test&& move_from) noexcept
 	{
 		_number = move_from._number;
 		std::cout << "operator=(Test&&) : " << _number << std::endl;
